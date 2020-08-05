@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sale{% endblock %}
+
+{% block body %}
+    <h1>Sale</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ sale.id }}</td>
+            </tr>
+            <tr>
+                <th>MandatNumber</th>
+                <td>{{ sale.mandatNumber }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ sale.type ? sale.type|join(', ') : '' }}</td>
+            </tr>
+            <tr>
+                <th>AnnonceTitle</th>
+                <td>{{ sale.annonceTitle }}</td>
+            </tr>
+            <tr>
+                <th>PriceFAI</th>
+                <td>{{ sale.priceFAI }}</td>
+            </tr>
+            <tr>
+                <th>NetSellerPrice</th>
+                <td>{{ sale.netSellerPrice }}</td>
+            </tr>
+            <tr>
+                <th>Pourcentage</th>
+                <td>{{ sale.pourcentage }}</td>
+            </tr>
+            <tr>
+                <th>Honorary</th>
+                <td>{{ sale.honorary }}</td>
+            </tr>
+            <tr>
+                <th>LivingArea</th>
+                <td>{{ sale.livingArea }}</td>
+            </tr>
+            <tr>
+                <th>LandArea</th>
+                <td>{{ sale.landArea }}</td>
+            </tr>
+            <tr>
+                <th>Descriptif</th>
+                <td>{{ sale.descriptif }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('sale_index') }}">back to list</a>
+
+    <a href="{{ path('sale_edit', {'id': sale.id}) }}">edit</a>
+
+    {{ include('sale/_delete_form.html.twig') }}
+{% endblock %}
