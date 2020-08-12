@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Rent;
 use App\Form\RentType;
 use App\Repository\RentRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,7 +29,7 @@ class RentController extends AbstractController
 
     /**
      * @Route("/new", name="rent_new", methods={"GET","POST"})
-     * 
+     * @IsGranted("ROLE_ADMIN")
      */
     public function new(Request $request): Response
     {
@@ -62,7 +63,7 @@ class RentController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="rent_edit", methods={"GET","POST"})
-     * 
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, Rent $rent): Response
     {
@@ -83,7 +84,7 @@ class RentController extends AbstractController
 
     /**
      * @Route("/{id}", name="rent_delete", methods={"DELETE"})
-     * 
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, Rent $rent): Response
     {

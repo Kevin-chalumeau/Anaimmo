@@ -12,7 +12,7 @@
     </h1>
   </div>
   <div class="col-md2">
-    <a href="/"><img src="{{asset('build/avendre.jpg') }}" class="effect" alt=""></a>
+    <a href="/"><img src="{{ asset('build/logo2.png') }}" class="anaimmo" alt=""></a>
   </div>
 </div> 
     
@@ -32,7 +32,7 @@
             </a>
           </li>
           <li class="nav-item px-lg-4">
-            <a class="nav-link text-uppercase text-expanded" href="#">A Louer</a>
+            <a class="nav-link text-uppercase text-expanded" href="/rent">A Louer</a>
           </li>
           <li class="nav-item px-lg-4">
             <a class="nav-link text-uppercase text-expanded" href="#">Recherche de bien</a>
@@ -40,8 +40,17 @@
           <li class="nav-item px-lg-4">
             <a class="nav-link text-uppercase text-expanded" href="#">Contact</a>
           </li>
+          <li class="nav-item px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="#">Bareme</a>
+          </li>
         </ul>
       </div>
     </div>
+    {% if app.user %}
+      {{ app.user.email }}
+        <a href="{{ path('app_logout') }}"> Se déconnecter</a>
+      {% else %}
+        <a href="{{ path('app_login') }}"> Se connecter</a>
+    {% endif %}
   </nav>
   </header>

@@ -15,7 +15,12 @@
     color: red;
 }
 .links{
-    background-color: rgb(168, 168, 240);
+    background-image: url('../images/cowork.jpg');
+    background-size: cover;
+    font-family: "Graduate";
+    padding: 3em;
+    height : 550px;
+    overflow: hidden;
 }
 
 .effect,
@@ -24,7 +29,8 @@
 	-webkit-transform: scale(1);
 	transform: scale(1);
 	-webkit-transition: .3s ease-in-out;
-	transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+    height: 200px;
 }
 .effect:hover,
 .effects:hover,
