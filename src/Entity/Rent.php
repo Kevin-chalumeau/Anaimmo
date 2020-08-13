@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\RentRepository;
 use Doctrine\DBAL\Schema\Constraint;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=RentRepository::class)
@@ -19,7 +20,6 @@ class Rent
     private $id;
 
     /**
-     * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
     private $title;
@@ -36,7 +36,7 @@ class Rent
 
     /**
      * @ORM\Column(type="integer")
-     * @Assertt\Range(min="5", max="1500")
+     * 
      */
     private $livingSpace;
 

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SaleRepository;
+use Doctrine\DBAL\Schema\Constraint;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
