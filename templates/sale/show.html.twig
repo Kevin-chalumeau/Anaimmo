@@ -4,55 +4,52 @@
 
 {% block body %}
     <h1>Bien à vendre</h1>
+    <div class="jumbotron">
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-md-8">
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ sale.id }}</td>
-            </tr>
-            <tr>
-                <th>MandatNumber</th>
-                <td>{{ sale.mandatNumber }}</td>
-            </tr>
-            <tr>
-                <th>Type</th>
-                <td>{{ sale.type ? sale.type|join(', ') : '' }}</td>
-            </tr>
-            <tr>
-                <th>AnnonceTitle</th>
-                <td>{{ sale.annonceTitle }}</td>
-            </tr>
-            <tr>
-                <th>PriceFAI</th>
-                <td>{{ sale.priceFAI }}</td>
-            </tr>
-            <tr>
-                <th>NetSellerPrice</th>
-                <td>{{ sale.netSellerPrice }}</td>
-            </tr>
-            <tr>
-                <th>Pourcentage</th>
-                <td>{{ sale.pourcentage }}</td>
-            </tr>
-            <tr>
-                <th>Honorary</th>
-                <td>{{ sale.honorary }}</td>
-            </tr>
-            <tr>
-                <th>LivingArea</th>
-                <td>{{ sale.livingArea }}</td>
-            </tr>
-            <tr>
-                <th>LandArea</th>
-                <td>{{ sale.landArea }}</td>
-            </tr>
-            <tr>
-                <th>Descriptif</th>
-                <td>{{ sale.descriptif }}</td>
-            </tr>
-        </tbody>
-    </table>
+                </div>
+                <div class="col md-4">
+                    <h1>{{ sale.annonceTitle }}</h1>
+                    <h2>{{ sale.priceFAI }} Euros - {{ sale.type }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <h2>Caractéristique</h2>
+                <table class="table table-striped">
+                    <tr>
+                        <td>Surface habitable</td>
+                        <td>{{ sale.LivingArea }} m²</td>
+                    </tr>
+                    <tr>
+                        <td>Surface du terrain</td>
+                        <td>{{ sale.landArea }}</td>
+                    </tr>
+                    <tr>
+                        <td>Prix TTC</td>
+                        <td>{{ sale.priceFAI }}</td>
+                    </tr>
+                    <tr>
+                        <td>Prix Net Vendeur</td>
+                        <td>{{ sale.netSellerPrice }}</td>
+                    </tr>
+                    <tr>
+                        <td>Honoraire de l'agence</td>
+                        <td> {{ sale.honorary }}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-4">
+                <h2>Descriptif</h2>
+                <p>{{ sale.descriptif }}</p>
+            </div>
+        </div>
+    </div>
 
     <a href="{{ path('sale_index') }}">back to list</a>
 

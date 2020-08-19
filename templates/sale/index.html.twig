@@ -1,10 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Sale index{% endblock %}
+{% block title %}Bien a vendre{% endblock %}
 
 {% block body %}
-    <h1>Bien à vendre</h1>
-
+    {% for sale in sales %}
+    <div class="card">
+    <img src="{{ vich_uploader_asset(sale, 'imageFile') }}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{ sale.annonceTitle }}</h5>
+      <p class="card-text">{{ sale.priceFAI }}</p>
+    </div>
+    </div>
+    {% endfor %}
     <table class="table">
         <thead>
             <tr>
