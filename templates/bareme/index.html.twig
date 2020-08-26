@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="container">
+    <h1>HONORAIRES CABINET APPLICABLES AU 1ER JANVIER 2020</h1>
+</div>
+<br>
+
+<div class="container">
+<h3> 1.TRANSACTIONS TOUT IMMEUBLE à la charge de l’acquéreur</h3>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Montants</th>
+      <th scope="col">TTC</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Inférieur à 20 000 €</th>
+      <td>Forfait 1.100 € TTC</td>
+    </tr>
+    <tr>
+      <th scope="row">De 20 001 à 100 000 €</th>
+      <td>6.5 %</td>
+    </tr>
+    <tr>
+      <th scope="row">De 100 001 à 250 000 €</th>
+      <td colspan="2">5 %</td>
+    </tr>
+    <tr>
+      <th scope="row">Supérieur à 250 001 €</th>
+      <td colspan="2">3.8 %</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="container">
+<h3>2.Gestion locative</h3>
+    <ul>
+        <li>7% TTC (TVA 20% comprise) sur toutes les sommes encaissées soit 5,83% HT.</li>
+        <li>Vacation horaire mandat de gestion hors gestion courante 60 € TTC (TVA 20%) soit 50 € HT.
+Rémunérations déductibles des revenus fonciers.</li>
+    </ul>
+</div>
+<div class="container">
+    <h3>3. Location</h3>
+        <h4>Bail d'habitation</h4>
+    <p>1. A la charge du locataire</p>
+    <p>1-a Honoraires de visites, constitution du dossier du locataire et de rédaction du bail et tous actes : plafonnés à 8€/m 2 de surface habitable LOI
+ALUR.</p>
+    <p>1-b Honoraires de réalisation de l’état des lieux comprenant l’entrée et la sortie du locataire : plafonnés à 3 €/m 2 de surface habitable LOI ALUR.</p>
+    <p>2. A la charge du propriétaire</p>
+    <p>2-a Un mois de loyer hors charges comprenant honoraires de visite, constitution du loyer du locataire, rédaction du bail et tous actes et état des
+lieux entrée et sortie.</p>
+        <h4>Bail commercial et professionnel</h4>
+    <ul>
+        <li>Honoraires de visites, actes, état des lieux: 15% HT du montant du loyer annuel (TVA 20% en sus).</li>
+        <li> Cession de bail: 8% HT du montant de cession du bail (TVA 20% en sus).</li>
+    </ul>
+</div>
+{% endblock %}

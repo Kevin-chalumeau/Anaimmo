@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
 /**
  * @Route("/sale")
  */
@@ -51,9 +52,11 @@ class SaleController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="sale_show", methods={"GET"})
+     * @Route("/{slug}-{id}", name="sale.show", methods={"GET"}, requirements={"slug": "[a-z0-9\-]*"})
+     * @param Sale $sale
+     * @return Response
      */
-    public function show(Sale $sale): Response
+    public function show(Sale $sale, string $slug): Response
     {
         return $this->render('sale/show.html.twig', [
             'sale' => $sale,

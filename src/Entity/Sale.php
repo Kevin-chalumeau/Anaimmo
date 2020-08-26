@@ -3,12 +3,15 @@
 namespace App\Entity;
 
 use App\Repository\SaleRepository;
+use DateTime;
 use Doctrine\DBAL\Schema\Constraint;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Cocur\Slugify\Slugify;
+use PhpParser\Node\Expr\Cast\String_;
 
 /**
  * @ORM\Entity(repositoryClass=SaleRepository::class)
@@ -90,6 +93,11 @@ class Sale
      */
     private $updated_at;
 
+    public function __construct()
+    {
+        $this->updated_at = new DateTime();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -129,6 +137,12 @@ class Sale
         $this->annonceTitle = $annonceTitle;
 
         return $this;
+    }
+
+    public function getSlug(): string
+    {
+        return (new Slugify())->slugify($this->annonceTitle);
+        
     }
 
     public function getPriceFAI(): ?int
