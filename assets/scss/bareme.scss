@@ -13,9 +13,27 @@
     color: darkblue;
     font-size: 48px;
     text-shadow: -1px -1px #f00, 1px 1px #a00, -3px 0 4px #000;
+    text-decoration: underline;
 }
 h3{
-    color:  #50f802;
+    color:  #f80223;
     font-size: 38px;
     text-shadow: -1px -1px rgb(243, 219, 2), 1px 1px rgb(243, 219, 2), -3px 0 4px #000;
+    text-decoration: underline;
+}
+
+thead{
+    background-color: grey;
+}
+
+tbody{
+    background-color: rgb(219, 210, 210);
+}
+
+.bareme_gest{
+    background-color: rgb(187, 170, 170);
+}
+
+.bareme_loc{
+    background-color: rgb(187, 170, 170);
 }
