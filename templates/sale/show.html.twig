@@ -49,9 +49,26 @@
                 <p>{{ sale.descriptif }}</p>
             </div>
         </div>
-        <div class="sale_autor">
-        <p> Contact: Anaïs Chaveneau 06.20.22.78.54 et Mail: anais.immobilier37@gmail.com</p>
+        <div class="sale_form">
+            <a href="" class="btn btn-primary">Contactez nous</a>
         </div>
+        <div id="contactForm" class="mt-4">
+            {{ form_start(form) }}
+            <div class="row">
+                <div class="col">{{ form_row(form.firstname) }}</div>
+                <div class="col">{{ form_row(form.lastname) }}</div>
+            </div>
+            <div class="row">
+                <div class="col">{{ form_row(form.phone) }}</div>
+                <div class="col">{{ form_row(form.email) }}</div>
+            </div>
+            {{ form_rest(form) }}
+            <div class="form-group">
+                <button class="btn btn-primary">Envoyer</button>
+            </div>
+            {{ form_end(form) }}
+        </div>
+        <p class="sale_autor md-4"> Contact: Anaïs Chaveneau 06.20.22.78.54 et Mail: anais.immobilier37@gmail.com</p>
     </div>
     
     {% if app.user %}

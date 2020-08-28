@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Contact;
 use App\Entity\Sale;
+use App\Form\ContactType;
 use App\Form\SaleType;
+use App\Notification\ContactNotification;
 use App\Repository\SaleRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -56,10 +59,33 @@ class SaleController extends AbstractController
      * @param Sale $sale
      * @return Response
      */
-    public function show(Sale $sale, string $slug): Response
+    public function show(Sale $sale, string $slug, Request $request,ContactNotification $notification): Response
     {
+        if ($sale->getSlug() !== $slug) {
+            return $this->redirectToRoute('sale.show', [
+                'id' => $sale->getId(),
+                'slug' => $sale->getSlug()
+            ]);
+        }
+
+        $contact = new Contact();
+        $contact->setSale($sale);
+        $form = $this->createForm(ContactType::class, $contact);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid) {
+            $notification->notify($contact);
+            $this->addFlash('success', 'Votre message a bien était envoyé');
+            /**return $this->redirectToRoute('sale.show', [
+                'id' => $sale->getId(),
+                'slug' => $sale->getSlug()
+            ]);
+            */
+        }
+
         return $this->render('sale/show.html.twig', [
             'sale' => $sale,
+            'form' => $form->createView()
         ]);
     }
 
