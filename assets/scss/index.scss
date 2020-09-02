@@ -1,0 +1,41 @@
+//home page
+
+.banner-area{
+    background-image: url('../images/richelieu.jpg');
+    background-size: cover;
+    font-family: "Graduate";
+    padding: 3em;
+    height : 550px;
+    display: grid;
+    justify-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.word{
+    color: red;
+}
+.links{
+    background-image: url('../images/cowork.jpg');
+    background-size: cover;
+    font-family: "Graduate";
+    padding: 3em;
+    height : 550px;
+    overflow: hidden;
+    padding: 250px;
+}
+
+.effect,
+.effects,
+.effet {
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+    height: 200px;
+}
+.effect:hover,
+.effects:hover,
+.effet:hover {
+	-webkit-transform: scale(1.3);
+	transform: scale(1.3);
+}
