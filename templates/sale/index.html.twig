@@ -5,6 +5,25 @@
 {% block body %}
     <h1>Bien à vendre</h1>
 
+    <div class="container">
+        <h2>Tous nos biens en vente</h2>
+        <div class="row flex">
+            {% for sale in sales %}
+                <div class="col-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="#">{{ sale.annonceTitle }}</a>
+                            </h5>
+                            <p class="card-text">{{ sale.type }}</p>
+                            <div class="text-primary">{{ sale.priceFAI | number_format(0, '', ' ') }} €</div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
     <table class="table">
         <thead>
             <tr>

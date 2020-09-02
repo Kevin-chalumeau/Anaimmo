@@ -25,9 +25,9 @@ class Sale
     private $mandatNumber;
 
     /**
-     * @ORM\Column(type="array")
+     * @ORM\Column(type="string", length=255)
      */
-    private $type = [];
+    private $type;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -86,12 +86,12 @@ class Sale
         return $this;
     }
 
-    public function getType(): ?array
+    public function getType(): ?string
     {
         return $this->type;
     }
 
-    public function setType(array $type): self
+    public function setType(string $type): self
     {
         $this->type = $type;
 
