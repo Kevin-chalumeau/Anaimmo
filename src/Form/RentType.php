@@ -21,6 +21,7 @@ class RentType extends AbstractType
             ->add('meuble')
             ->add('notMeuble')
             ->add('dpe')
+            ->add('description')
         ;
     }
 

@@ -4,6 +4,24 @@
 
 {% block body %}
     <h1>Rent index</h1>
+    <div class="container">
+        <h2>Tous nos biens en locatioon</h2>
+        <div class="row flex">
+            {% for rent in rents %}
+                <div class="col-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="{{ path('rent_show', {id: rent.id, slug: rent.slug}) }}">{{ rent.title }}</a>
+                            </h5>
+                            <p class="card-text">{{ rent.city }}</p>
+                            <div class="text-primary">{{ rent.monthPrice | number_format(0, '', ' ') }} €</div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 
     <table class="table">
         <thead>
@@ -35,7 +53,6 @@
                 <td>{{ rent.notMeuble ? 'Yes' : 'No' }}</td>
                 <td>{{ rent.dpe }}</td>
                 <td>
-                    <a href="{{ path('rent_show', {'id': rent.id}) }}">show</a>
                     {% if app.user %}
                     <a href="{{ path('rent_edit', {'id': rent.id}) }}">edit</a>
                     {% endif %}
