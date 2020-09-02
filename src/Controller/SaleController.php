@@ -79,6 +79,7 @@ class SaleController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            $this->addFlash('success', 'L\'annonce a était modifier');
 
             return $this->redirectToRoute('sale_index');
         }
@@ -99,6 +100,7 @@ class SaleController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($sale);
             $entityManager->flush();
+            $this->addFlash('success', 'L\'annonce a était supprimer');
         }
 
         return $this->redirectToRoute('sale_index');

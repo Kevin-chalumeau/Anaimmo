@@ -5,6 +5,11 @@
 {% block body %}
 <div class="sale_body">
     <h1 class="sale_title">Bien à vendre</h1>
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+        {{ message }}
+        </div>
+    {% endfor %}
 
     <div class="container">
         <h2>Tous nos biens en vente</h2>
@@ -21,16 +26,18 @@
                         </div>
                     </div>
                 </div>
-            
-        </div>
-    </div>
-
-                    {% if app.user %}
-                    <a href="{{ path('sale_edit', {'id': sale.id}) }}">edit</a>
+                 {% if app.user %}
+                    <a href="{{ path('sale_edit', {'id': sale.id}) }}">Modifier un bien</a>
                     {% endif %}
+         
             {% endfor %}
-    {% if app.user %}
-    <a href="{{ path('sale_new') }}">Create new</a>
-    {% endif %}
+    
 </div>
+
+            
+       
+{% if app.user %}
+    <a href="{{ path('sale_new') }}">Créer un nouveau bien</a>
+    {% endif %}
+                   
 {% endblock %}
