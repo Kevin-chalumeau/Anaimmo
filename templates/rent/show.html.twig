@@ -1,58 +1,70 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Rent{% endblock %}
+{% block title %}Bien à louer{% endblock %}
 
 {% block body %}
-    <h1>Rent</h1>
+   <div class="jumbotron">
+    <div class="container">
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ rent.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ rent.title }}</td>
-            </tr>
-            <tr>
-                <th>City</th>
-                <td>{{ rent.city }}</td>
-            </tr>
-            <tr>
-                <th>MonthPrice</th>
-                <td>{{ rent.monthPrice }}</td>
-            </tr>
-            <tr>
-                <th>LivingSpace</th>
-                <td>{{ rent.livingSpace }}</td>
-            </tr>
-            <tr>
-                <th>LandSpace</th>
-                <td>{{ rent.landSpace }}</td>
-            </tr>
-            <tr>
-                <th>Rooms</th>
-                <td>{{ rent.rooms }}</td>
-            </tr>
-            <tr>
-                <th>Meuble</th>
-                <td>{{ rent.meuble ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>NotMeuble</th>
-                <td>{{ rent.notMeuble ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>Dpe</th>
-                <td>{{ rent.dpe }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="row">
+        <div class="col-md-8">
+        
+        </div>
+        <div class="col-md-4">
+            <h1>{{ rent.title }}</h1>
+            <h2>{{ rent.livingSpace }} m2</h2>
+            <div class="text-primary">{{ rent.monthPrice| number_format(0, '', ' ') }} €</div>
+            <a href="btn btn-primary">Contacter l'agence</a>
+        </div>
+    </div>
+</div>
+<div class="mt-4">
+    <div class="row">
+        <div class="col-md-8">
+            <h2>Caractéristique</h2>
+            <table class="table table-striped">
+                <tr>
+                    <td>Ville</td>
+                    <td>{{ rent.city }}</td>
+                </tr>
+                <tr>
+                    <td>Surface habitable</td>
+                    <td>{{ rent.livingSpace }}</td>
+                </tr>
+                <tr>
+                    <td>Surface du terrain</td>
+                    <td>{{ rent.landSpace }}</td>
+                </tr>
+                <tr>
+                    <td>loyer Mensuel</td>
+                    <td>{{ rent.monthPrice }}</td>
+                </tr>
+                <tr>
+                    <td>Nombre de pièces</td>
+                    <td>{{ rent.rooms }}</td>
+                </tr>
+                <tr>
+                    <td>Bien meublé/td>
+                    <td>{{ rent.meuble ? 'YES' : 'NO' }}</td>
+                </tr>
+                <tr>
+                    <td>DPE</td>
+                    <td>{{ rent.DPE }}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-4">
+            <h2>Descriptif du bien</h2>
+            <div class="card-text">{{ rent.description }}</div>
+        </div>
+    </div>  
+</div>
 
+    {% if app.user %}
     <a href="{{ path('rent_index') }}">back to list</a>
 
     <a href="{{ path('rent_edit', {'id': rent.id}) }}">edit</a>
 
     {{ include('rent/_delete_form.html.twig') }}
+    {% endif %}
 {% endblock %}

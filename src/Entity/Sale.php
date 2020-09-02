@@ -6,6 +6,7 @@ use App\Repository\SaleRepository;
 use Doctrine\DBAL\Schema\Constraint;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use Cocur\Slugify\Slugify;
 
 /**
  * @ORM\Entity(repositoryClass=SaleRepository::class)
@@ -108,6 +109,10 @@ class Sale
         $this->annonceTitle = $annonceTitle;
 
         return $this;
+    }
+
+    public function getSlug(): string {
+        return (new Slugify())->slugify($this->annonceTitle);
     }
 
     public function getPriceFAI(): ?int

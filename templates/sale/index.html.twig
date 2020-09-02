@@ -13,7 +13,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">
-                                <a href="#">{{ sale.annonceTitle }}</a>
+                                <a href="{{ path('sale_show', {id: sale.id, slug: sale.slug}) }}">{{ sale.annonceTitle }}</a>
                             </h5>
                             <p class="card-text">{{ sale.type }}</p>
                             <div class="text-primary">{{ sale.priceFAI | number_format(0, '', ' ') }} €</div>
@@ -56,7 +56,6 @@
                 <td>{{ sale.landArea }}</td>
                 <td>{{ sale.descriptif }}</td>
                 <td>
-                    <a href="{{ path('sale_show', {'id': sale.id}) }}">show</a>
                     {% if app.user %}
                     <a href="{{ path('sale_edit', {'id': sale.id}) }}">edit</a>
                     {% endif %}

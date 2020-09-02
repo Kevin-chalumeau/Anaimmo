@@ -52,14 +52,22 @@ class RentController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="rent_show", methods={"GET"})
+     * @Route("/biens/{slug}-{id}", name="rent_show", methods={"GET"}, requirements={"slug": "[a-z0-9\-]*"})
+     * @return Response
      */
-    public function show(Rent $rent): Response
+    public function show(Rent $rent, string $slug): Response
     {
+        if ($rent->getSlug() !== $slug) {
+            return $this->redirectToRoute('rent_show', [
+                'id' =>$rent->getId(),
+                'slug' => $rent->getSlug()
+            ], 301);
+        }
         return $this->render('rent/show.html.twig', [
             'rent' => $rent,
         ]);
     }
+
 
     /**
      * @Route("/{id}/edit", name="rent_edit", methods={"GET","POST"})
