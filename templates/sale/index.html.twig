@@ -3,54 +3,41 @@
 {% block title %}Sale index{% endblock %}
 
 {% block body %}
-    <h1>Bien à vendre</h1>
+<div class="sale_body">
+    <h1 class="sale_title">Bien à vendre</h1>
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+        {{ message }}
+        </div>
+    {% endfor %}
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>MandatNumber</th>
-                <th>Type</th>
-                <th>AnnonceTitle</th>
-                <th>PriceFAI</th>
-                <th>NetSellerPrice</th>
-                <th>Pourcentage</th>
-                <th>Honorary</th>
-                <th>LivingArea</th>
-                <th>LandArea</th>
-                <th>Descriptif</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for sale in sales %}
-            <tr>
-                <td>{{ sale.id }}</td>
-                <td>{{ sale.mandatNumber }}</td>
-                <td>{{ sale.type ? sale.type|join(', ') : '' }}</td>
-                <td>{{ sale.annonceTitle }}</td>
-                <td>{{ sale.priceFAI }}</td>
-                <td>{{ sale.netSellerPrice }}</td>
-                <td>{{ sale.pourcentage }}</td>
-                <td>{{ sale.honorary }}</td>
-                <td>{{ sale.livingArea }}</td>
-                <td>{{ sale.landArea }}</td>
-                <td>{{ sale.descriptif }}</td>
-                <td>
-                    <a href="{{ path('sale_show', {'id': sale.id}) }}">show</a>
-                    {% if app.user %}
-                    <a href="{{ path('sale_edit', {'id': sale.id}) }}">edit</a>
+    <div class="container">
+        <h2>Tous nos biens en vente</h2>
+        <div class="row flex">
+            {% for sale in sales %}
+                <div class="col-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="{{ path('sale_show', {id: sale.id, slug: sale.slug}) }}">{{ sale.annonceTitle }}</a>
+                            </h5>
+                            <p class="card-text">{{ sale.type }}</p>
+                            <div class="text-primary">{{ sale.priceFAI | number_format(0, '', ' ') }} €</div>
+                        </div>
+                    </div>
+                </div>
+                 {% if app.user %}
+                    <a href="{{ path('sale_edit', {'id': sale.id}) }}">Modifier un bien</a>
                     {% endif %}
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="12">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    {% if app.user %}
-    <a href="{{ path('sale_new') }}">Create new</a>
+         
+            {% endfor %}
+    
+</div>
+
+            
+       
+{% if app.user %}
+    <a href="{{ path('sale_new') }}">Créer un nouveau bien</a>
     {% endif %}
+                   
 {% endblock %}

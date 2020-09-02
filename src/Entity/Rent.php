@@ -6,6 +6,7 @@ use App\Repository\RentRepository;
 use Doctrine\DBAL\Schema\Constraint;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use Cocur\Slugify\Slugify;
 
 /**
  * @ORM\Entity(repositoryClass=RentRepository::class)
@@ -85,6 +86,10 @@ class Rent
         $this->title = $title;
 
         return $this;
+    }
+
+    public function getSlug(): string {
+        return (new Slugify())->slugify($this->title);
     }
 
     public function getCity(): ?string

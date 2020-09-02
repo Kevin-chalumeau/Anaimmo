@@ -1,4 +1,24 @@
+<div class="container mt-4">
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <div class="row">
+        <div class="col-md-4">{{ form_row(form.mandatNumber) }}</div>
+        <div class="col-md-4">{{ form_row(form.city) }}</div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">{{ form_row(form.annonceTitle) }}</div>
+        <div class="col-md-4">{{ form_row(form.type) }}</div>
+        <div class="col-md-4">{{ form_row(form.priceFAI) }}</div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">{{ form_row(form.netSellerPrice) }}</div>
+        <div class="col-md-4">{{ form_row(form.pourcentage) }}</div>
+        <div class="col-md-4">{{ form_row(form.honorary) }}</div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">{{ form_row(form.livingArea) }}</div>
+        <div class="col-md-4">{{ form_row(form.landArea) }}</div>  
+    </div>
+        {{ form_widget(form) }}
+    <button class="btn btn-secondary">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
+</div>

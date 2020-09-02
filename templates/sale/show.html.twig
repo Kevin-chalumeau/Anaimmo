@@ -1,62 +1,70 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Sale{% endblock %}
+{% block title %}Bien a vendre{% endblock %}
 
 {% block body %}
-    <h1>Bien à vendre</h1>
+<div class="jumbotron">
+    <div class="container">
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ sale.id }}</td>
-            </tr>
-            <tr>
-                <th>MandatNumber</th>
-                <td>{{ sale.mandatNumber }}</td>
-            </tr>
-            <tr>
-                <th>Type</th>
-                <td>{{ sale.type ? sale.type|join(', ') : '' }}</td>
-            </tr>
-            <tr>
-                <th>AnnonceTitle</th>
-                <td>{{ sale.annonceTitle }}</td>
-            </tr>
-            <tr>
-                <th>PriceFAI</th>
-                <td>{{ sale.priceFAI }}</td>
-            </tr>
-            <tr>
-                <th>NetSellerPrice</th>
-                <td>{{ sale.netSellerPrice }}</td>
-            </tr>
-            <tr>
-                <th>Pourcentage</th>
-                <td>{{ sale.pourcentage }}</td>
-            </tr>
-            <tr>
-                <th>Honorary</th>
-                <td>{{ sale.honorary }}</td>
-            </tr>
-            <tr>
-                <th>LivingArea</th>
-                <td>{{ sale.livingArea }}</td>
-            </tr>
-            <tr>
-                <th>LandArea</th>
-                <td>{{ sale.landArea }}</td>
-            </tr>
-            <tr>
-                <th>Descriptif</th>
-                <td>{{ sale.descriptif }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="row">
+        <div class="col-md-8">
+        
+        </div>
+        <div class="col-md-4">
+            <h1>{{ sale.annonceTitle }}</h1>
+            <h2>{{ sale.livingArea }} m2</h2>
+            <div class="text-primary">{{ sale.priceFAI | number_format(0, '', ' ') }} €</div>
+            <a href="" class="btn btn-primary">Contacter l'agence</a>
+        </div>
+    </div>
+</div>
+<div class="mt-4">
+    <div class="row">
+        <div class="col-md-8">
+            <h2>Caractéristique</h2>
+            <table class="table table-striped">
+                <tr>
+                    <td>ville</td>
+                    <td>{{ sale.city }}</td>
+                </tr>
+                <tr>
+                    <td>Type du bien</td>
+                    <td>{{ sale.type }}</td>
+                </tr>
+                <tr>
+                    <td>Surface habitable</td>
+                    <td>{{ sale.livingArea }} m²</td>
+                </tr>
+                <tr>
+                    <td>Surface du terrain</td>
+                    <td>{{ sale.landArea }} m²</td>
+                </tr>
+                <tr>
+                    <td>Prix FAI</td>
+                    <td>{{ sale.priceFAI | number_format(0, '', ' ') }} €</td>
+                </tr>
+                <tr>
+                    <td>Prix net Vendeur</td>
+                    <td>{{ sale.netSellerPrice | number_format(0, '', ' ') }} €</td>
+                </tr>
+                <tr>
+                    <td>Honoraire</td>
+                    <td>{{ sale.honorary | number_format(0, '', ' ') }} €</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-4">
+            <h2>Descriptif du bien</h2>
+            <div class="card-text">{{ sale.descriptif}}</div>
+        </div>
+    </div>  
+</div>
 
+    {% if app.user %}
     <a href="{{ path('sale_index') }}">back to list</a>
 
     <a href="{{ path('sale_edit', {'id': sale.id}) }}">edit</a>
 
     {{ include('sale/_delete_form.html.twig') }}
+    {% endif %}
 {% endblock %}
