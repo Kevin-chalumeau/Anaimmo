@@ -3,7 +3,8 @@
 {% block title %}Sale index{% endblock %}
 
 {% block body %}
-    <h1>Bien à vendre</h1>
+<div class="sale_body">
+    <h1 class="sale_title">Bien à vendre</h1>
 
     <div class="container">
         <h2>Tous nos biens en vente</h2>
@@ -20,55 +21,16 @@
                         </div>
                     </div>
                 </div>
-            {% endfor %}
+            
         </div>
     </div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>MandatNumber</th>
-                <th>Type</th>
-                <th>AnnonceTitle</th>
-                <th>PriceFAI</th>
-                <th>NetSellerPrice</th>
-                <th>Pourcentage</th>
-                <th>Honorary</th>
-                <th>LivingArea</th>
-                <th>LandArea</th>
-                <th>Descriptif</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for sale in sales %}
-            <tr>
-                <td>{{ sale.id }}</td>
-                <td>{{ sale.mandatNumber }}</td>
-                <td>{{ sale.type ? sale.type|join(', ') : '' }}</td>
-                <td>{{ sale.annonceTitle }}</td>
-                <td>{{ sale.priceFAI }}</td>
-                <td>{{ sale.netSellerPrice }}</td>
-                <td>{{ sale.pourcentage }}</td>
-                <td>{{ sale.honorary }}</td>
-                <td>{{ sale.livingArea }}</td>
-                <td>{{ sale.landArea }}</td>
-                <td>{{ sale.descriptif }}</td>
-                <td>
                     {% if app.user %}
                     <a href="{{ path('sale_edit', {'id': sale.id}) }}">edit</a>
                     {% endif %}
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="12">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            {% endfor %}
     {% if app.user %}
     <a href="{{ path('sale_new') }}">Create new</a>
     {% endif %}
+</div>
 {% endblock %}

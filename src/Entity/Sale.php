@@ -70,6 +70,11 @@ class Sale
      */
     private $descriptif;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $city;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -195,6 +200,18 @@ class Sale
     public function setDescriptif(string $descriptif): self
     {
         $this->descriptif = $descriptif;
+
+        return $this;
+    }
+
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    public function setCity(string $city): self
+    {
+        $this->city = $city;
 
         return $this;
     }
