@@ -6,6 +6,11 @@
     <h1>Bien à louer</h1>
     <div class="container">
         <h2>Tous nos biens en locatioon</h2>
+        {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+        {{ message }}
+        </div>
+    {% endfor %}
         <div class="row flex">
             {% for rent in rents %}
                 <div class="col-3">
