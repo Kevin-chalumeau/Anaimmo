@@ -3,6 +3,7 @@
 {% block title %}Sale index{% endblock %}
 
 {% block body %}
+<section>
 <div class="sale_body">
     <h1 class="sale_title">Bien à vendre</h1>
     {% for message in app.flashes('success') %}
@@ -33,6 +34,7 @@
             {% endfor %}
     
 </div>
+</section>
 
             
        

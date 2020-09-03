@@ -3,6 +3,8 @@
 {% block title %}Rent index{% endblock %}
 
 {% block body %}
+<section>
+<div class="rent_body">
     <h1>Bien à louer</h1>
     <div class="container">
         <h2>Tous nos biens en locatioon</h2>
@@ -36,5 +38,7 @@
     {% if app.user %}
     <a href="{{ path('rent_new') }}">Create new</a>
     {% endif %}
+</div>
+</section>
 
 {% endblock %}
