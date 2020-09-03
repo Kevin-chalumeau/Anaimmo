@@ -3,6 +3,7 @@
 {% block title %}Sale index{% endblock %}
 
 {% block body %}
+<section>
 <div class="sale_body">
     <h1 class="sale_title">Bien à vendre</h1>
     {% for message in app.flashes('success') %}
@@ -31,13 +32,13 @@
                     {% endif %}
          
             {% endfor %}
-    
+  
 </div>
 
-            
-       
+</section>
+ <a href="{{ path('home_index') }}">Page d'accueil</a>          
 {% if app.user %}
     <a href="{{ path('sale_new') }}">Créer un nouveau bien</a>
     {% endif %}
-                   
+               
 {% endblock %}

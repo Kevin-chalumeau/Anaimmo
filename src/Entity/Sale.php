@@ -7,9 +7,11 @@ use Doctrine\DBAL\Schema\Constraint;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use Cocur\Slugify\Slugify;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=SaleRepository::class)
+ * @UniqueEntity("annonceTitle")
  */
 class Sale
 {
@@ -22,56 +24,68 @@ class Sale
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank
      */
     private $mandatNumber;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Notblank
      */
     private $type;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Notblank
      */
     private $annonceTitle;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Notblank
      */
     private $priceFAI;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Notblank
      */
     private $netSellerPrice;
 
     /**
      * @ORM\Column(type="float")
+     * @Assert\Notblank
      */
     private $pourcentage;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Notblank
      */
     private $honorary;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Notblank
+     *  @Assert\Range(min=10, max=600)
      */
     private $livingArea;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Notblank
      */
     private $landArea;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\Notblank
      */
     private $descriptif;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Notblank
      */
     private $city;
 
