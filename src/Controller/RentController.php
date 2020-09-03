@@ -80,6 +80,7 @@ class RentController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            $this->addFlash('success', 'L\'annonce a était modifier');
 
             return $this->redirectToRoute('rent_index');
         }
@@ -100,6 +101,7 @@ class RentController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($rent);
             $entityManager->flush();
+            $this->addFlash('success', 'L\'annonce a était modifier');
         }
 
         return $this->redirectToRoute('rent_index');

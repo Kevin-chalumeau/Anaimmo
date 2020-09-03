@@ -3,9 +3,16 @@
 {% block title %}Rent index{% endblock %}
 
 {% block body %}
-    <h1>Rent index</h1>
+<section>
+<div class="rent_body">
+    <h1>Bien à louer</h1>
     <div class="container">
         <h2>Tous nos biens en locatioon</h2>
+        {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+        {{ message }}
+        </div>
+    {% endfor %}
         <div class="row flex">
             {% for rent in rents %}
                 <div class="col-3">
@@ -19,53 +26,19 @@
                         </div>
                     </div>
                 </div>
-            {% endfor %}
+            
         </div>
     </div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>City</th>
-                <th>MonthPrice</th>
-                <th>LivingSpace</th>
-                <th>LandSpace</th>
-                <th>Rooms</th>
-                <th>Meuble</th>
-                <th>NotMeuble</th>
-                <th>Dpe</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for rent in rents %}
-            <tr>
-                <td>{{ rent.id }}</td>
-                <td>{{ rent.title }}</td>
-                <td>{{ rent.city }}</td>
-                <td>{{ rent.monthPrice }}</td>
-                <td>{{ rent.livingSpace }}</td>
-                <td>{{ rent.landSpace }}</td>
-                <td>{{ rent.rooms }}</td>
-                <td>{{ rent.meuble ? 'Yes' : 'No' }}</td>
-                <td>{{ rent.notMeuble ? 'Yes' : 'No' }}</td>
-                <td>{{ rent.dpe }}</td>
-                <td>
+   
                     {% if app.user %}
                     <a href="{{ path('rent_edit', {'id': rent.id}) }}">edit</a>
                     {% endif %}
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="11">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            {% endfor %}
     {% if app.user %}
     <a href="{{ path('rent_new') }}">Create new</a>
     {% endif %}
+</div>
+</section>
+
 {% endblock %}

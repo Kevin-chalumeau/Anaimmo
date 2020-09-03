@@ -3,6 +3,7 @@
 {% block title %}Bien à louer{% endblock %}
 
 {% block body %}
+<section>
    <div class="jumbotron">
     <div class="container">
 
@@ -14,7 +15,7 @@
             <h1>{{ rent.title }}</h1>
             <h2>{{ rent.livingSpace }} m2</h2>
             <div class="text-primary">{{ rent.monthPrice| number_format(0, '', ' ') }} €</div>
-            <a href="btn btn-primary">Contacter l'agence</a>
+            <a href="" class="btn btn-primary">Contacter l'agence</a>
         </div>
     </div>
 </div>
@@ -29,23 +30,28 @@
                 </tr>
                 <tr>
                     <td>Surface habitable</td>
-                    <td>{{ rent.livingSpace }}</td>
+                    <td>{{ rent.livingSpace }} m²</td>
                 </tr>
                 <tr>
                     <td>Surface du terrain</td>
-                    <td>{{ rent.landSpace }}</td>
+                    <td>{{ rent.landSpace }} m²</td>
                 </tr>
                 <tr>
                     <td>loyer Mensuel</td>
-                    <td>{{ rent.monthPrice }}</td>
+                    <td>{{ rent.monthPrice }} par mois</td>
                 </tr>
                 <tr>
                     <td>Nombre de pièces</td>
                     <td>{{ rent.rooms }}</td>
                 </tr>
                 <tr>
-                    <td>Bien meublé/td>
-                    <td>{{ rent.meuble ? 'YES' : 'NO' }}</td>
+                    <td>Bien meublé</td>
+                    <td>{{ rent.meuble ? 'OUI' : 'NON' }}</td>
+                </tr>
+                <tr>
+                    <td>Bien non meublé</td>
+                    <td>{{ rent.notMeuble ? 'OUI' : 'NON' }}</td>
+
                 </tr>
                 <tr>
                     <td>DPE</td>
@@ -67,4 +73,5 @@
 
     {{ include('rent/_delete_form.html.twig') }}
     {% endif %}
+</section>
 {% endblock %}
