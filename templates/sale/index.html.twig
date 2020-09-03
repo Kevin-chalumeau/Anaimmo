@@ -32,14 +32,13 @@
                     {% endif %}
          
             {% endfor %}
-    
+  
 </div>
-</section>
 
-            
-       
+</section>
+ <a href="{{ path('home_index') }}">Page d'accueil</a>          
 {% if app.user %}
     <a href="{{ path('sale_new') }}">Créer un nouveau bien</a>
     {% endif %}
-                   
+               
 {% endblock %}
