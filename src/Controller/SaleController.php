@@ -25,14 +25,15 @@ class SaleController extends AbstractController
     {   
         $donnee = $this->getDoctrine()->getRepository(Sale::class)->findBy([]);
 
-        $sale = $paginator->paginate(
+        $sales = $paginator->paginate(
             $donnee,
             $request->query->getInt('page', 1),
-            6
+            4
         );
+
         return $this->render('sale/index.html.twig', [
             'sales' => $saleRepository->findAll(),
-            'sale' =>$sale
+            'sales' =>$sales
         ]);
     }
 
