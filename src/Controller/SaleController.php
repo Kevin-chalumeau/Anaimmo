@@ -21,7 +21,8 @@ class SaleController extends AbstractController
      * @Route("/", name="sale_index", methods={"GET"})
      */
     public function index(SaleRepository $saleRepository): Response
-    {
+    {   
+        $données
         return $this->render('sale/index.html.twig', [
             'sales' => $saleRepository->findAll(),
         ]);
