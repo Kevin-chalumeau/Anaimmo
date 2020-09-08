@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Sale;
 use App\Form\SaleType;
 use App\Repository\SaleRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,11 +21,19 @@ class SaleController extends AbstractController
     /**
      * @Route("/", name="sale_index", methods={"GET"})
      */
-    public function index(SaleRepository $saleRepository): Response
+    public function index(SaleRepository $saleRepository,Request $request, PaginatorInterface $paginator): Response
     {   
-        $données
+        $donnee = $this->getDoctrine()->getRepository(Sale::class)->findBy([]);
+
+        $sales = $paginator->paginate(
+            $donnee,
+            $request->query->getInt('page', 1),
+            4
+        );
+
         return $this->render('sale/index.html.twig', [
             'sales' => $saleRepository->findAll(),
+            'sales' =>$sales
         ]);
     }
 

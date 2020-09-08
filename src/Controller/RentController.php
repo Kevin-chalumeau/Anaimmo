@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\PaginatorInterface;
 
 
 /**
@@ -20,10 +21,19 @@ class RentController extends AbstractController
     /**
      * @Route("/", name="rent_index", methods={"GET"})
      */
-    public function index(RentRepository $rentRepository): Response
-    {
+    public function index(RentRepository $rentRepository, Request $request, PaginatorInterface $paginator): Response
+    {   
+        $donnees = $this->getDoctrine()->getRepository(Rent::class)->findBy([]);
+
+        $rents = $paginator->paginate(
+            $donnees,
+            $request->query->getInt('page', 1),
+            4
+        );
+        
         return $this->render('rent/index.html.twig', [
             'rents' => $rentRepository->findAll(),
+            'rents' =>$rents
         ]);
     }
 
