@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div class="bareme_page">
+    <div class="container mt4">
+        <h1 class="bareme_style">HONORAIRES CABINET APPLICABLES AU 1ER JANVIER 2020</h1>
+        <h3 class="bareme_style">1- Transactions tout immeuble à la charge de l'acquèreur</h3>
+        <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Montant transaction</th>
+                <th scope="col">% en TTC</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Inférieur à 20 000 €</td>
+                <td>Forfait de 1 100 € TTC</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>Entre 20 001 € et 100 000 €</td>
+                <td>6.5 % TTC</td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>Entre 100 001 € et 250 000 €</td>
+                <td>5% TTC</td>
+            </tr>
+            <tr>
+                <th scope="row">4</th>
+                <td>Supérieur à 250 001 €</td>
+                <td>3.8% TTC</td>
+            </tr>
+        </tbody>
+        </table>
+    
+    </div>
+    <div class="container">
+            <h3 class="bareme_style">2- Location</h3>
+            <h5 class="bareme_style">Bail d'habitation</h5>
+            <p class="bareme_underline">A la charge du locataire</p>
+            <ul>
+                <li>Honoraires de visites, constitution du dossier du locataire et de rédaction du bail et tous actes : plafonnés à 8€/m 2 de surface habitable LOI
+ALUR.</li>
+                <li>Honoraires de réalisation de l’état des lieux comprenant l’entrée et la sortie du locataire : plafonnés à 3 €/m 2 de surface habitable LOI ALUR.</li>
+            </ul>
+            <p class="bareme_underline">A la charge du propriétaire</p>
+            <ul>
+                <li>un mois de loyer hors charges comprenant honoraires de visite, constitution du loyer du locataire, rédaction du bail et tous actes et état des
+lieux entrée et sortie.</li>
+            </ul>
+                
+    </div>
+    <div class="container">
+        <h5 class="bareme_style">Gestion Locative</h5>
+        <ul>
+            <li>Honoraires de visites, actes, état des lieux: 15% HT du montant du loyer annuel (TVA 20% en sus).</li>
+            <li>Cession de bail: 8% HT du montant de cession du bail (TVA 20% en sus).</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

@@ -4,7 +4,9 @@ namespace App\Repository;
 
 use App\Entity\Sale;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\QueryBuilder;
 
 /**
  * @method Sale|null find($id, $lockMode = null, $lockVersion = null)
@@ -18,7 +20,7 @@ class SaleRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Sale::class);
     }
-
+    
     // /**
     //  * @return Sale[] Returns an array of Sale objects
     //  */
