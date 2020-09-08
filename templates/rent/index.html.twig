@@ -39,6 +39,8 @@
     <a href="{{ path('rent_new') }}">Create new</a>
     {% endif %}
 </div>
+
 </section>
+{{ knp_pagination_render(rents) }}
 
 {% endblock %}
