@@ -5,6 +5,22 @@
 {% block body %}
 <section>
 <div class="sale_body">
+        <div class="container">
+            {{ form_start(form) }}
+            <div class="form-row">
+                <div class="col">
+                    {{ form_row(form.maxPrice)}}
+                </div>
+                <div class="col">
+                    {{ form_row(form.minSurface) }}
+                </div>
+                <div class="col">
+                    <button class="btn btn-primary">Rechercher</button>
+                </div>
+            </div>
+            {{ form_end(form) }}
+            
+        </div>
     <h1 class="sale_title">Bien à vendre</h1>
     {% for message in app.flashes('success') %}
         <div class="alert alert-success">

@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Sale;
 use App\Form\SaleType;
+use App\Model\SaleSearch;
+use App\Form\SaleSearchType;
 use App\Repository\SaleRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -23,6 +25,10 @@ class SaleController extends AbstractController
      */
     public function index(SaleRepository $saleRepository,Request $request, PaginatorInterface $paginator): Response
     {   
+        $search = new SaleSearch;
+        $form = $this->createForm(SaleSearchType::class, $search);
+        $form->handleRequest($request);
+
         $donnee = $this->getDoctrine()->getRepository(Sale::class)->findBy([]);
 
         $sales = $paginator->paginate(
@@ -33,7 +39,8 @@ class SaleController extends AbstractController
 
         return $this->render('sale/index.html.twig', [
             'sales' => $saleRepository->findAll(),
-            'sales' =>$sales
+            'sales' =>$sales,
+            'form' => $form->createView()
         ]);
     }
 
