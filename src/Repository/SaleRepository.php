@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Sale;
+use App\Model\SaleSearch;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
@@ -21,6 +22,22 @@ class SaleRepository extends ServiceEntityRepository
         parent::__construct($registry, Sale::class);
     }
     
+    /**
+     * @return Sale[]
+     */
+    public function findSearch(SaleSearch $search): array
+    {
+        $query = $this
+            ->createQueryBuilder('s')
+            ->select('s');
+
+        if (!empty($search->maxPrice)) {
+            $query = $query
+                ->andWhere('s.price <= :maxPrice')
+                ->setParameter('max', $search->max);
+        }
+        return $query->getQuery()->getResult();
+    }
     // /**
     //  * @return Sale[] Returns an array of Sale objects
     //  */

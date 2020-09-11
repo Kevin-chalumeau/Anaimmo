@@ -34,7 +34,7 @@ class SaleSearchType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => SaleSearch::class,
-            'method' => 'get',
+            'method' => 'GET',
             'csrf_protection' => false,
         ]);
     }

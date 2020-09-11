@@ -23,22 +23,23 @@ class SaleController extends AbstractController
     /**
      * @Route("/", name="sale_index", methods={"GET"})
      */
-    public function index(SaleRepository $saleRepository,Request $request, PaginatorInterface $paginator): Response
+    public function index(SaleRepository $repository,Request $request, PaginatorInterface $paginator): Response
     {   
-        $search = new SaleSearch;
+        $search = new SaleSearch();
         $form = $this->createForm(SaleSearchType::class, $search);
         $form->handleRequest($request);
+        $sales = $repository->findSearch($search);
 
-        $donnee = $this->getDoctrine()->getRepository(Sale::class)->findBy([]);
-
+        $donnée = $this->getDoctrine()->getRepository(Sale::class)->findBy([]);
+        
         $sales = $paginator->paginate(
-            $donnee,
+            $donnée,
             $request->query->getInt('page', 1),
             4
         );
 
         return $this->render('sale/index.html.twig', [
-            'sales' => $saleRepository->findAll(),
+            'sales' => $repository->findAll(),
             'sales' =>$sales,
             'form' => $form->createView()
         ]);
