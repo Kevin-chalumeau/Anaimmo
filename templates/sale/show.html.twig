@@ -58,9 +58,19 @@
         </div>
         <div class="col-md-5">
             <h2>Descriptif du bien :</h2>
+            
             <div class="card-text">{{ sale.descriptif}}</div>
         </div>
-    </div>  
+    </div> 
+    <div class="row">
+        <div class="col-md-3">
+            <h2>Options</h2>
+            {% for Options in sale.Options %}
+               <li>{{ Options.name }} </li>
+            {% endfor %}
+        </div>
+    </div>
+  
 </div>
 
     {% if app.user %}
