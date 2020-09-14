@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SaleRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Schema\Constraint;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
@@ -88,6 +90,17 @@ class Sale
      * @Assert\Notblank
      */
     private $city;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Option::class, inversedBy="sales")
+     */
+    private $options;
+
+
+    public function __construct()
+    {
+        $this->options = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -229,4 +242,33 @@ class Sale
 
         return $this;
     }
+
+    /**
+     * @return Collection|Option[]
+     */
+    public function getOptions(): Collection
+    {
+        return $this->options;
+    }
+
+    public function addOption(Option $option): self
+    {
+        if (!$this->options->contains($option)) {
+            $this->options[] = $option;
+            $option->addSale($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOption(Option $option): self
+    {
+        if ($this->options->contains($option)) {
+            $this->options->removeElement($option);
+            $option->removeSale($this);
+        }
+
+        return $this;
+    }
+
 }

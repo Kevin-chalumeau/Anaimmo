@@ -1,27 +1,18 @@
 //home page
 
 .banner-area{
-    background-image: url('../images/richelieu.jpg');
+    background-image: url('../images/cowork.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
     background-size: cover;
-    font-family: "Graduate";
-    padding: 3em;
-    height : 550px;
-    display: grid;
-    justify-items: center;
-    justify-content: center;
+    padding-bottom: 150px;
+    line-height: initial;
     overflow: hidden;
+    min-height: 1000px;
 }
 .word{
     color: red;
-}
-.links{
-    background-image: url('../images/cowork.jpg');
-    background-size: cover;
-    font-family: "Graduate";
-    padding: 3em;
-    height : 550px;
-    overflow: hidden;
-    padding: 250px;
 }
 
 .effect,
