@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Option;
+use App\Form\OptionType;
 use App\Entity\Sale;
 use App\Form\SaleType;
 use App\Repository\SaleRepository;
@@ -84,6 +86,7 @@ class SaleController extends AbstractController
      */
     public function edit(Request $request, Sale $sale): Response
     {
+
         $form = $this->createForm(SaleType::class, $sale);
         $form->handleRequest($request);
 

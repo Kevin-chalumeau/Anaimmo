@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\SaleRepository;
-use App\Entity\Option;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Schema\Constraint;
