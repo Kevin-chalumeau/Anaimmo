@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Sale;
+use App\Entity\Option;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -26,6 +28,11 @@ class SaleType extends AbstractType
             ->add('livingArea', IntegerType::class, ['label' => 'Surface de la maison'])
             ->add('landArea', IntegerType::class, ['label' => 'Superficie du terrain'])
             ->add('descriptif', TextareaType::class, ['label' => 'Description du bien'])
+            ->add('options', EntityType::class, [
+                'class' => Option::class,
+                'choice_label' => 'name',
+                'multiple' => true
+                ])
         ;
     }
 
