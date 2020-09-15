@@ -37,6 +37,8 @@ class Sale
 
     /**
      * @var File|null
+     * @Assert\Image(
+     *      mimeTypes="image/jpeg/jpg")
      * @Vich\UploadableField(mapping="sale_image", fileNameProperty="filename")
      */
     private $imageFile;

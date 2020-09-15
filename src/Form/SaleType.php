@@ -31,6 +31,7 @@ class SaleType extends AbstractType
             ->add('descriptif', TextareaType::class, ['label' => 'Description du bien'])
             ->add('options', EntityType::class, [
                 'class' => Option::class,
+                'required' => false,
                 'choice_label' => 'name',
                 'multiple' => true
                 ])
