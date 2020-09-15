@@ -17,15 +17,20 @@
         <div class="row flex">
             {% for sale in sales %}
                 <div class="col-3">
+                <a href="{{ path('sale_show', {id: sale.id, slug: sale.slug}) }}">
                     <div class="card mb-4">
+                        {% if sale.filename %}
+                            <img src="{{ vich_uploader_asset(sale, 'imageFile')}}" alt="card-img-top" class="sale_img">
+                        {% endif %}
                         <div class="card-body">
                             <h5 class="card-title">
-                                <a href="{{ path('sale_show', {id: sale.id, slug: sale.slug}) }}">{{ sale.annonceTitle }}</a>
+                                {{ sale.annonceTitle }}
                             </h5>
                             <p class="card-text">{{ sale.type }}</p>
                             <div class="text-primary">{{ sale.priceFAI | number_format(0, '', ' ') }} €</div>
                         </div>
                     </div>
+                </a>
                 </div>
                  {% if app.user %}
                     <a href="{{ path('sale_edit', {'id': sale.id}) }}">Modifier un bien</a>

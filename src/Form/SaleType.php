@@ -6,6 +6,7 @@ use App\Entity\Sale;
 use App\Entity\Option;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -30,9 +31,11 @@ class SaleType extends AbstractType
             ->add('descriptif', TextareaType::class, ['label' => 'Description du bien'])
             ->add('options', EntityType::class, [
                 'class' => Option::class,
+                'required' => false,
                 'choice_label' => 'name',
                 'multiple' => true
                 ])
+            ->add('imageFile', FileType::class)
         ;
     }
 
