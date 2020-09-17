@@ -69,7 +69,7 @@ class SaleController extends AbstractController
     }
 
     /**
-     * @Route("/biens/{slug}-{id}", name="sale_show", methods={"GET"}, requirements={"slug": "[a-z0-9\-]*"})
+     * @Route("/biens/{slug}-{id}", name="sale_show", methods={"GET", "POST"}, requirements={"slug": "[a-z0-9\-]*"})
      * @return Response
      */
     public function show(Sale $sale, string $slug, Request $request, MailerInterface $mailer): Response
@@ -87,19 +87,23 @@ class SaleController extends AbstractController
         $contactBien->setSale($sale);
         $form = $this->createForm(ContactBienType::class, $contactBien);
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $email = (new templatedEmail())
                 ->from($this->getParameter('mailer_from'))
                 ->to(new Address($this->getParameter('mailer_to')))
                 ->subject("Vous avez reçu un email d'un visiteur pour un bien !")
                 ->html($this->renderView('contactBien/mail.html.twig', [
-                    'contact' => $contactBien
+                    'contactBien' => $contactBien
                 ]));
 
             $mailer->send($email);
 
             $this->addFlash('success', 'Votre message a été transmis, nous vous répondrons dans les meilleurs délais.');
-            return $this->redirectToRoute('sale_show');
+            return $this->redirectToRoute('sale_show', [
+                'id' =>$sale->getId(),
+                'slug' => $sale->getSlug()
+            ]);
         }
 
 

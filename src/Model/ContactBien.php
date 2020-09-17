@@ -2,6 +2,7 @@
 namespace App\Model;
 
 use App\Entity\Sale;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class ContactBien {
     /**
@@ -38,7 +39,8 @@ class ContactBien {
      * @Assert\NotBlank
      * @Assert\Type("string")
      * @Assert\Regex(
-     *  pattern="/[0-9]{10}/")
+     *  pattern="/[0-9]{10}/",
+     *  message = "Ce champs ne doit contenir que 10 chiffres.")
      */
     private $phone;
     /**
