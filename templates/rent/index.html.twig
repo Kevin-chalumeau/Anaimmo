@@ -34,15 +34,14 @@
 
    
                     {% if app.user %}
-                    <a href="{{ path('rent_edit', {'id': rent.id}) }}">edit</a>
+                    <a href="{{ path('rent_edit', {'id': rent.id}) }}">Modifier</a>
                     {% endif %}
             {% endfor %}
-    {% if app.user %}
-    <a href="{{ path('rent_new') }}">Create new</a>
-    {% endif %}
 </div>
 
-</section>
 {{ knp_pagination_render(rents) }}
-
+ <a href="{{ path('home_index') }}">Page d'accueil</a>          
+{% if app.user %}
+    <a href="{{ path('rent_new') }}">Créer un nouveau bien</a>
+    {% endif %}
 {% endblock %}
