@@ -6,26 +6,28 @@
 <section>
 <div class="rent_body">
     <h1>Bien à louer</h1>
-    <div class="container">
-        <h2>Tous nos biens en locatioon</h2>
-        {% for message in app.flashes('success') %}
+    {% for message in app.flashes('success') %}
         <div class="alert alert-success">
         {{ message }}
         </div>
     {% endfor %}
+    <div class="container">
+        <h2>Tous nos biens en locatioon</h2>
         <div class="row flex">
             {% for rent in rents %}
-                <div class="col-3">
-                    <div class="card">
+            <div class="col-3">
+            <a href="{{ path('rent_show', {id: rent.id, slug: rent.slug}) }}">
+                    <div class="card mb-4">
                         <div class="card-body">
                             <h5 class="card-title">
-                                <a href="{{ path('rent_show', {id: rent.id, slug: rent.slug}) }}">{{ rent.title }}</a>
+                               {{ rent.title}}
                             </h5>
                             <p class="card-text">{{ rent.city }}</p>
                             <div class="text-primary">{{ rent.monthPrice | number_format(0, '', ' ') }} €</div>
                         </div>
                     </div>
                 </div>
+             </a>
             
         </div>
     </div>
