@@ -1,6 +1,7 @@
 <?php
 namespace App\Model;
 
+use App\Entity\Rent;
 use App\Entity\Sale;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -67,6 +68,12 @@ class ContactBien {
      * @var Sale
      */
     private $sale;
+
+    /**
+     * @var Rent
+     */
+    private $rent;
+
 
     /**
      * @return string
@@ -193,4 +200,24 @@ class ContactBien {
         $this->sale = $sale;
         return $this;
     }
+
+    /**
+     * @return Rent
+     */
+
+     public function getRent(): ?Rent
+     {
+         return $this->rent;
+     }
+
+     /**
+      * @param Rent $rent
+      * @return ContactBien
+      */
+
+    public function setRent(Rent $rent): ContactBien
+     {
+         $this->rent = $rent;
+         return $this;
+     }
 }
