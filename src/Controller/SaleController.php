@@ -92,7 +92,7 @@ class SaleController extends AbstractController
             $email = (new templatedEmail())
                 ->from($this->getParameter('mailer_from'))
                 ->to(new Address($this->getParameter('mailer_to')))
-                ->subject("Vous avez reçu un email d'un visiteur pour un bien !")
+                ->subject("Vous avez reçu un email d'un visiteur pour un bien en vente !")
                 ->html($this->renderView('contactBien/mail.html.twig', [
                     'contactBien' => $contactBien
                 ]));

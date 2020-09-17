@@ -13,6 +13,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Mime\MimeTypes;
 
 /**
  * @ORM\Entity(repositoryClass=SaleRepository::class)
@@ -37,8 +38,7 @@ class Sale
 
     /**
      * @var File|null
-     * @Assert\Image(
-     *      mimeTypes="image/jpeg/jpg")
+     * @Assert\Image
      * @Vich\UploadableField(mapping="sale_image", fileNameProperty="filename")
      */
     private $imageFile;

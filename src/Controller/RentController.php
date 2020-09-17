@@ -88,7 +88,7 @@ class RentController extends AbstractController
             $email = (new templatedEmail())
                 ->from($this->getParameter('mailer_from'))
                 ->to(new Address($this->getParameter('mailer_to')))
-                ->subject("Vous avez reçu un email d'un visiteur pour un bien !")
+                ->subject("Vous avez reçu un email d'un visiteur pour un bien en location !")
                 ->html($this->renderView('contactBienRent/mail.html.twig', [
                     'contactBien' => $contactBien
                     
