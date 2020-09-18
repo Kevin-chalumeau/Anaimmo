@@ -9,9 +9,12 @@ use Doctrine\DBAL\Schema\Constraint;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use Cocur\Slugify\Slugify;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 
 /**
  * @ORM\Entity(repositoryClass=RentRepository::class)
+ * @UniqueEntity("title")
  */
 class Rent
 {
@@ -22,34 +25,40 @@ class Rent
      */
     private $id;
 
+
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $title;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $city;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank
      */
     private $monthPrice;
 
     /**
      * @ORM\Column(type="integer")
-     * 
+     * @Assert\NotBlank
      */
     private $livingSpace;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank
      */
     private $landSpace;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank
      */
     private $rooms;
 
@@ -65,11 +74,13 @@ class Rent
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $dpe;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank
      */
     private $description;
 
@@ -239,4 +250,6 @@ class Rent
 
         return $this;
     }
+
 }
+

@@ -5,7 +5,9 @@ namespace App\Controller;
 use App\Entity\Option;
 use App\Form\OptionType;
 use App\Entity\Sale;
+use App\Form\ContactBienType;
 use App\Form\SaleType;
+use App\Model\ContactBien;
 use App\Repository\SaleRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -13,6 +15,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Mime\Address;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use Symfony\Component\Mailer\MailerInterface;
 
 
 /**
@@ -64,19 +69,47 @@ class SaleController extends AbstractController
     }
 
     /**
-     * @Route("/biens/{slug}-{id}", name="sale_show", methods={"GET"}, requirements={"slug": "[a-z0-9\-]*"})
+     * @Route("/biens/{slug}-{id}", name="sale_show", methods={"GET", "POST"}, requirements={"slug": "[a-z0-9\-]*"})
      * @return Response
      */
-    public function show(Sale $sale, string $slug): Response
+    public function show(Sale $sale, string $slug, Request $request, MailerInterface $mailer): Response
     {
+       
+
         if ($sale->getSlug() !== $slug) {
             return $this->redirectToRoute('sale_show', [
                 'id' =>$sale->getId(),
                 'slug' => $sale->getSlug()
             ], 301);
         }
+
+        $contactBien = new ContactBien();
+        $contactBien->setSale($sale);
+        $form = $this->createForm(ContactBienType::class, $contactBien);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $email = (new templatedEmail())
+                ->from($this->getParameter('mailer_from'))
+                ->to(new Address($this->getParameter('mailer_to')))
+                ->subject("Vous avez reçu un email d'un visiteur pour un bien en vente !")
+                ->html($this->renderView('contactBien/mail.html.twig', [
+                    'contactBien' => $contactBien
+                ]));
+
+            $mailer->send($email);
+
+            $this->addFlash('success', 'Votre message a été transmis, nous vous répondrons dans les meilleurs délais.');
+            return $this->redirectToRoute('sale_show', [
+                'id' =>$sale->getId(),
+                'slug' => $sale->getSlug()
+            ]);
+        }
+
+
         return $this->render('sale/show.html.twig', [
             'sale' => $sale,
+            'form' => $form->createView()
         ]);
     }
 
