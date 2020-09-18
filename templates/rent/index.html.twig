@@ -6,41 +6,42 @@
 <section>
 <div class="rent_body">
     <h1>Bien à louer</h1>
-    <div class="container">
-        <h2>Tous nos biens en locatioon</h2>
-        {% for message in app.flashes('success') %}
+    {% for message in app.flashes('success') %}
         <div class="alert alert-success">
         {{ message }}
         </div>
     {% endfor %}
+    <div class="container">
+        <h2>Tous nos biens en locatioon</h2>
         <div class="row flex">
             {% for rent in rents %}
-                <div class="col-3">
-                    <div class="card">
+            <div class="col-3">
+            <a href="{{ path('rent_show', {id: rent.id, slug: rent.slug}) }}">
+                    <div class="card mb-4">
                         <div class="card-body">
                             <h5 class="card-title">
-                                <a href="{{ path('rent_show', {id: rent.id, slug: rent.slug}) }}">{{ rent.title }}</a>
+                               {{ rent.title}}
                             </h5>
                             <p class="card-text">{{ rent.city }}</p>
                             <div class="text-primary">{{ rent.monthPrice | number_format(0, '', ' ') }} €</div>
                         </div>
                     </div>
                 </div>
+             </a>
             
         </div>
     </div>
 
    
                     {% if app.user %}
-                    <a href="{{ path('rent_edit', {'id': rent.id}) }}">edit</a>
+                    <a href="{{ path('rent_edit', {'id': rent.id}) }}">Modifier</a>
                     {% endif %}
             {% endfor %}
-    {% if app.user %}
-    <a href="{{ path('rent_new') }}">Create new</a>
-    {% endif %}
 </div>
-
 </section>
 {{ knp_pagination_render(rents) }}
-
+ <a href="{{ path('home_index') }}">Page d'accueil</a>          
+{% if app.user %}
+    <a href="{{ path('rent_new') }}">Créer un nouveau bien</a>
+    {% endif %}
 {% endblock %}

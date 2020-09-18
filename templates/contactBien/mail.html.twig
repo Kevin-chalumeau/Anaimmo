@@ -1,0 +1,10 @@
+<h1>Nouvel email</h1>
+<h2>Demande de contact pour {{contactBien.sale.annonceTitle }}</h2>
+<p> Nom du bien : </p>
+<p><a href="{{ url('sale_show', {id: contactBien.sale.id, slug: contactBien.sale.slug})}}">{{contactBien.sale.annonceTitle }}</a></p>
+<p>Nom : {{ contactBien.lastname }}</p>
+<p>Prénom: {{ contactBien.firstname }}</p>
+<p>Tel : {{ contactBien.phone }} </p>
+<p>e-mail : {{ contactBien.email }}</p>
+<p>Sujet : {{ contactBien.subject }}</p>
+<p>Message : {{ contactBien.description }}</p>
