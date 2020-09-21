@@ -1,5 +1,11 @@
 {% extends 'base.html.twig' %}
 {% block body %}
+<div class="contact-body">
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+        {{ message }}
+        </div>
+    {% endfor %}
     <div class="container">
         <div class="row-flex">
             <div class="text-align-center">
@@ -12,6 +18,17 @@
             <p>Je vous propose de remplir se formulaire avec vos souhaits de bien et je m'occupe de la recherche à votre place</p>
             </div>
         </div>
+        <div class="container contact_box">
+            <div class="row justify-content-start">
+                <div class="contact_form col-md-8">
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    <button class="btn btn-success">{{ button_label|default('Envoyer') }}</button>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
         
     </div>
+</div>
 {% endblock %}
