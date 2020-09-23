@@ -123,10 +123,16 @@ class Sale
      */
     private $updated_at;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Picture::class, mappedBy="sale", orphanRemoval=true)
+     */
+    private $pictures;
+
 
     public function __construct()
     {
         $this->options = new ArrayCollection();
+        $this->pictures = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -346,6 +352,37 @@ class Sale
     public function setUpdatedAt(\DateTimeInterface $updated_at): self
     {
         $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Picture[]
+     */
+    public function getPictures(): Collection
+    {
+        return $this->pictures;
+    }
+
+    public function addPicture(Picture $picture): self
+    {
+        if (!$this->pictures->contains($picture)) {
+            $this->pictures[] = $picture;
+            $picture->setSale($this);
+        }
+
+        return $this;
+    }
+
+    public function removePicture(Picture $picture): self
+    {
+        if ($this->pictures->contains($picture)) {
+            $this->pictures->removeElement($picture);
+            // set the owning side to null (unless already changed)
+            if ($picture->getSale() === $this) {
+                $picture->setSale(null);
+            }
+        }
 
         return $this;
     }
