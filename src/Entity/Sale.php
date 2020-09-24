@@ -102,18 +102,23 @@ class Sale
 
     /**
      * @ORM\Column(type="datetime")
-     * @var \DateTime|null
+     * @var \DateTime
      */
     private $updated_at;
 
     /**
-     * @ORM\OneToMany(targetEntity=Picture::class, mappedBy="sale", orphanRemoval=true)
+     *
+     * @ORM\OneToMany(targetEntity=Picture::class, mappedBy="sale", orphanRemoval=true, cascade={"persist"}))
      */
     private $pictures;
+
+   
+    private $pictureFiles;
 
 
     public function __construct()
     {
+        $this->updated_at = new \DateTime();
         $this->options = new ArrayCollection();
         $this->pictures = new ArrayCollection();
     }
@@ -307,6 +312,15 @@ class Sale
         return $this->pictures;
     }
 
+    public function getPicture(): ?Picture
+    {
+        if ($this->pictures->isEmpty()) {
+            return null;
+        }
+        return $this->pictures->first();
+        
+    }
+
     public function addPicture(Picture $picture): self
     {
         if (!$this->pictures->contains($picture)) {
@@ -330,4 +344,28 @@ class Sale
         return $this;
     }
 
+
+    /**
+     * @return mixed
+     */ 
+    public function getPictureFiles()
+    {
+        return $this->pictureFiles;
+    }
+
+    /**
+     *@param mixed $pictureFiles
+     *@return Sale
+     */ 
+    public function setPictureFiles($pictureFiles): self
+    {
+        foreach ($pictureFiles as $pictureFile) {
+            $picture = new Picture;
+            $picture->setImageFile($pictureFile);
+            $this->addPicture($picture);
+        }
+        $this->pictureFiles = $pictureFiles;
+
+        return $this;
+    }
 }

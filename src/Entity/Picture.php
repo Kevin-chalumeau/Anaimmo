@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Sale;
 use App\Repository\PictureRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
@@ -28,10 +29,7 @@ class Picture
 
     /**
      * @var File|null
-     * @Assert\Image(
-     *     mimeTypes="image/jpeg"
-     * )
-     * @Vich\UploadableField(mapping="property_image", fileNameProperty="filename")
+     * @Vich\UploadableField(mapping="sale_image", fileNameProperty="filename")
      */
     private $imageFile;
 
@@ -40,7 +38,8 @@ class Picture
      * @ORM\ManyToOne(targetEntity="App\Entity\Sale", inversedBy="pictures")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $sales;
+    private $sale;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,12 +59,12 @@ class Picture
 
     public function getSale(): ?Sale
     {
-        return $this->property;
+        return $this->sale;
     }
 
-    public function setSale(?Sale $property): self
+    public function setSale(?Sale $sale): self
     {
-        $this->property = $property;
+        $this->sale = $sale;
 
         return $this;
     }
@@ -73,7 +72,7 @@ class Picture
     /**
      * @return null|File
      */
-    public function getImageFile(): ?Sale
+    public function getImageFile(): ?File
     {
         return $this->imageFile;
     }
