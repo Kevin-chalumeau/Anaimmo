@@ -4,22 +4,25 @@ namespace App\Form;
 
 use App\Entity\Rent;
 use App\Entity\Option;
+use Doctrine\ORM\Mapping\Entity;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class RentType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
-            ->add('city')
-            ->add('monthPrice')
-            ->add('livingSpace')
-            ->add('landSpace')
-            ->add('rooms')
+            ->add('title', TextType::class, ['label' => 'titre'])
+            ->add('city', TextType::class, ['label' => 'Ville'])
+            ->add('monthPrice', IntegerType::class, ['label' => 'Loyers Mensuel TTC'])
+            ->add('livingSpace', IntegerType::class, ['label' => 'Surface'])
+            ->add('landSpace', IntegerType::class, ['label' => 'Surface extérieur'])
+            ->add('rooms', IntegerType::class, ['label' => 'Nombre de chambre'])
             ->add('meuble')
             ->add('notMeuble')
             ->add('dpe')
