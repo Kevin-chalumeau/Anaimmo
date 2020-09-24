@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Rent{% endblock %}
+{% block title %}Modifier un bien{% endblock %}
 
 {% block body %}
 <div class="sale_edit">
-    <h1>Edit Rent</h1>
+    <h1>Modifier un bien</h1>
 
     {{ include('rent/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('rent_index') }}">back to list</a>
+    <a href="{{ path('rent_index') }}">retour a la liste</a>
 
     {{ include('rent/_delete_form.html.twig') }}
 </div>

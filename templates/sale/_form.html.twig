@@ -1,17 +1,18 @@
+<section>
 <div class="container mt-4">
+<div class="col-md-4">
+        <div class="row-flex">
+        {% for picture in sale.pictures %}
+            <div class="row">
+                <img src="{{ vich_uploader_asset(picture, 'imageFile')}}" style="width: 100%">
+            </div>
+        {% endfor %}
+        </div>
+    </div>
 {{ form_start(form) }}
     <div class="row">
         <div class="col-md-4">{{ form_row(form.mandatNumber) }}</div>
         <div class="col-md-4">{{ form_row(form.city) }}</div>
-    </div>
-    <div class="col-md-4">
-        <div class="row-flex">
-        {% for pictures in sale.pictures %}
-            <div class="col">
-                <img src="{{ vich_uploader_asset(picture, 'imageFile')}}"
-            </div>
-        {% endfor %}
-        </div>
     </div>
     <div class="row">
         <div class="col-md-4">{{ form_row(form.annonceTitle) }}</div>
@@ -26,9 +27,10 @@
     <div class="row">
         <div class="col-md-4">{{ form_row(form.livingArea) }}</div>
         <div class="col-md-4">{{ form_row(form.landArea) }}</div> 
-        <div class="col-md-4">{{ form_row(form.imageFile) }}</div>
+        <div class="col-md-4">{{ form_row(form.pictureFiles) }}</div>
     </div>
         {{ form_rest(form) }}
     <button class="btn btn-secondary">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
 </div>
+</section>
