@@ -23,7 +23,11 @@
         <div class="col-md-8">
             
             {% if sale.picture %}
-                    <img src="{{ vich_uploader_asset(sale.picture, 'imageFile')}}" style="width:100%" alt="card-img-top" class="sale_img">
+            {% for picture in sale.pictures %}
+            <div class="row">
+                <img src="{{ vich_uploader_asset(picture, 'imageFile')}}" style="width: 100%">
+            </div>
+            {% endfor %}
             {% endif %}
             
         </div>
@@ -112,4 +116,5 @@
     {% endif %}
 <a href="{{ path('sale_index') }}">Retour à la liste</a>
 </section>
+
 {% endblock %}
