@@ -42,16 +42,41 @@ class SearchBien
      * @Assert\NotBlank
      */
     private $email;
+
+    /**
+    * @Assert\Type("string")
+    * @Assert\NotBlank
+    */
     private $type;
 
+    /**
+    * @Assert\Type("string")
+    * @Assert\NotBlank
+    */
     private $budget;
 
+    /**
+    * @Assert\Type("string")
+    * @Assert\NotBlank
+    */
     private $localisation;
 
+    /**
+    * @Assert\Type("string")
+    * @Assert\NotBlank
+    */
     private $rooms;
 
+    /**
+    * @Assert\Type("string")
+    * @Assert\NotBlank
+    */
     private $livingSpace;
 
+    /**
+    * @Assert\Type("string")
+    * @Assert\NotBlank
+    */
     private $landSpace;
 
     /**

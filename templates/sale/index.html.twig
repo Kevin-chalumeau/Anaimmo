@@ -19,8 +19,8 @@
                 <div class="col-3">
                 <a href="{{ path('sale_show', {id: sale.id, slug: sale.slug}) }}">
                     <div class="card mb-4">
-                        {% if sale.filename %}
-                            <img src="{{ vich_uploader_asset(sale, 'imageFile')}}" alt="card-img-top" class="sale_img">
+                        {% if sale.picture %}
+                            <img src="{{ vich_uploader_asset(sale.picture, 'imageFile')}}" alt="card-img-top" class="sale_img">
                         {% endif %}
                         <div class="card-body">
                             <h5 class="card-title">
