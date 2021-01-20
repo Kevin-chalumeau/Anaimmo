@@ -23,11 +23,11 @@
         <div class="col-md-8">
             <div class="col-6">
             {% if sale.picture %}
-            {% for picture in sale.pictures %}
-            <div class="row-flex">
-                <img src="{{ vich_uploader_asset(picture, 'imageFile')}}" style="width:100%; height:auto;">
-            </div>
-            {% endfor %}
+                {% for picture in sale.pictures %}
+                    <div class="row-flex">
+                         <img src="{{ vich_uploader_asset(picture, 'imageFile')}}" style="width:100%; height:auto;">
+                    </div>
+                {% endfor %}
             {% endif %}
             </div>
         </div>
