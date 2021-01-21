@@ -3,6 +3,7 @@
 {% block title %}Sale index{% endblock %}
 
 {% block body %}
+<!-- Mise en place d'un message flash -->
 <section>
 <div class="sale_body">
     <h1 class="sale_title">Bien à vendre</h1>
@@ -11,7 +12,7 @@
         {{ message }}
         </div>
     {% endfor %}
-
+    <!-- Affichage des différents bien en vente -->
     <div class="container">
         <h2>Tous nos biens en vente</h2>
         <div class="row flex">
@@ -42,6 +43,7 @@
 </div>
 
 </section>
+<!-- pagination et retour aux pages précédente -->
 {{ knp_pagination_render(sales) }}
  <a href="{{ path('home_index') }}">Page d'accueil</a>          
 {% if app.user %}

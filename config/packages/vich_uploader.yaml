@@ -4,7 +4,7 @@ vich_uploader:
     mappings:
         sale_image:
             uri_prefix: /images/sales
-            upload_destination: '%kernel.project_dir%/public/media/sales'
+            upload_destination: '%kernel.project_dir%/public/images/sales'
             namer: Vich\UploaderBundle\Naming\UniqidNamer
     #    products:
     #        uri_prefix: /images/products

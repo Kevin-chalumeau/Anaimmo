@@ -8,6 +8,7 @@
 <div class="jumbotron">
     
     <div class="container">
+    <!-- Mise en place des messages de succées ou non d'envoi du mail -->
     {% for message in app.flashes('success') %}
         <div class="alert alert-success">
         {{ message }}
@@ -18,7 +19,7 @@
         <p>Des champs ne sont pas valide</p>
         </div>
     {% endif %}
-    
+    <!-- Affichage du bien -->
     <div class="row">
         <div class="col-md-8">
             <div class="col-6">
@@ -106,7 +107,7 @@
     </div>
   
 </div>
-
+    
     {% if app.user %}
     <a href="{{ path('sale_index') }}">back to list</a>
 

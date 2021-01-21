@@ -19,6 +19,7 @@ use Symfony\Component\Mime\Address;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\MailerInterface;
 
+// Mise en place des différentes éléments du crud
 
 /**
  * @Route("/sale")
@@ -43,7 +44,7 @@ class SaleController extends AbstractController
             'sales' =>$sales
         ]);
     }
-
+    //Fonction création de nouveau bien
     /**
      * @Route("/new", name="sale_new", methods={"GET","POST"})
      * @IsGranted("ROLE_ADMIN")
@@ -67,7 +68,7 @@ class SaleController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-
+    // Visualisation du bien en entier, mis en place du formulaire d'envoi de mail
     /**
      * @Route("/biens/{slug}-{id}", name="sale_show", methods={"GET", "POST"}, requirements={"slug": "[a-z0-9\-]*"})
      * @return Response
@@ -112,7 +113,7 @@ class SaleController extends AbstractController
             'form' => $form->createView()
         ]);
     }
-
+    // Editions d'un bien deja existant
     /**
      * @Route("/{id}/edit", name="sale_edit", methods={"GET","POST"})
      * @IsGranted("ROLE_ADMIN")
@@ -135,7 +136,7 @@ class SaleController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-
+    //Suppression d'un bien
     /**
      * @Route("/{id}", name="sale_delete", methods={"DELETE"})
      * @IsGranted("ROLE_ADMIN")
