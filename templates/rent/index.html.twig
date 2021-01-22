@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Rent index{% endblock %}
+{% block title %}Location{% endblock %}
 
 {% block body %}
 <section>
 <div class="rent_body">
     <h1>Bien à louer</h1>
     <div class="container">
-        <h2>Tous nos biens en locatioon</h2>
+        <h2>Tous nos biens en location</h2>
         {% for message in app.flashes('success') %}
         <div class="alert alert-success">
         {{ message }}

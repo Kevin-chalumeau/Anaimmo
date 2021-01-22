@@ -83,9 +83,9 @@
 </div>
 
     {% if app.user %}
-    <a href="{{ path('rent_index') }}">back to list</a>
+    <a href="{{ path('rent_index') }}">retour liste</a>
 
-    <a href="{{ path('rent_edit', {'id': rent.id}) }}">edit</a>
+    <a href="{{ path('rent_edit', {'id': rent.id}) }}">modifier</a>
 
     {{ include('rent/_delete_form.html.twig') }}
     {% endif %}
