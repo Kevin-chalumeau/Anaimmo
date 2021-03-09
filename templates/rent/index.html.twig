@@ -32,11 +32,11 @@
 
    
                     {% if app.user %}
-                    <a href="{{ path('rent_edit', {'id': rent.id}) }}">edit</a>
+                    <a href="{{ path('rent_edit', {'id': rent.id}) }}">Modifier</a>
                     {% endif %}
             {% endfor %}
     {% if app.user %}
-    <a href="{{ path('rent_new') }}">Create new</a>
+    <a href="{{ path('rent_new') }}">Nouveau</a>
     {% endif %}
 </div>
 

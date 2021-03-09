@@ -26,7 +26,7 @@
             {% if sale.picture %}
                 {% for picture in sale.pictures %}
                     <div class="row-flex">
-                         <img src="{{ vich_uploader_asset(picture, 'imageFile')}}" style="width:100%; height:auto;">
+                         <img src="{{ vich_uploader_asset(picture, 'imageFile')}}" style="width:100%; height:auto;" class="style_photo">
                     </div>
                 {% endfor %}
             {% endif %}
